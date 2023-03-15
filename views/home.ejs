@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>URL Shortner</title>
+</head>
+
+<body>
+	<h1>URL Shortener</h1>
+	<% if (locals.id) { %>
+		<p>Shorten URL:
+			<a target="_blank" href="http://localhost:7777/url/<%= locals.id%>"> http://localhost:7777/url/<%= locals.id%></a>
+		</p>
+		<% } %>
+			<form method="POST" action="/url">
+				<label for="redirectURL">
+					Enter your URL here:
+					<input type="text" name="redirectURL" placeholder="https://www.example.com">
+					<button type="submit">Generate</button>
+				</label>
+			</form>
+
+			<script>
+				if (window.history.replaceState) {
+					window.history.replaceState(null, null, window.location.href);
+				}
+			</script>
+</body>
+
+</html>
