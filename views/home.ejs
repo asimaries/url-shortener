@@ -10,6 +10,7 @@
 
 <body>
 	<h1>URL Shortener</h1>
+	<h2><%= locals.user?.name ?? '' %></h2>
 	<% if (locals.id) { %>
 		<p>Shorten URL:
 			<a target="_blank" href="http://localhost:7777/url/<%= locals.id%>"> http://localhost:7777/url/<%=

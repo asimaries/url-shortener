@@ -7,7 +7,7 @@ async function handleUserSignUp(req, res) {
   await User.create({
     name, email, password,
   })
-  return res.render('home');
+  return res.redirect('/login');
 }
 
 async function handleUserLogin(req, res) {

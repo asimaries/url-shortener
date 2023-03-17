@@ -4,7 +4,7 @@ const cookieParser = require('cookie-parser')
 
 const { connectToMongoDB } = require('./connect');
 const { URL } = require('./models/url')
-const { restrictToLoggedInUserOnly } = require('./middleware/auth')
+const { restrictToLoggedInUserOnly, checkAuth } = require('./middleware/auth')
 
 const { staticRouter } = require('./route/staticRouter');
 const { router: urlRouter } = require('./route/url');
@@ -30,7 +30,7 @@ app.use(function (req, res, next) {
 
 app.use('/url', restrictToLoggedInUserOnly, urlRouter)
 app.use('/user', UserRouter)
-app.use('/', staticRouter)
+app.use('/', checkAuth, staticRouter)
 
 app.get('/url/:shortID', async (req, res) => {
 	const shortID = req.params.shortID;
@@ -45,6 +45,9 @@ app.get('/url/:shortID', async (req, res) => {
 	return res.redirect(entry.redirectURL)
 })
 
+app.get('*', (req, res) => {
+		return res.render('404', {error : 'Not Found'})
+})
 
 // app.get('/url/analytics', async (req, res) => {
 // 	return res.redirect(entry.redirectURL)
