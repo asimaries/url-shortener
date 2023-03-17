@@ -12,13 +12,14 @@
 	<h1>URL Shortener</h1>
 	<% if (locals.id) { %>
 		<p>Shorten URL:
-			<a target="_blank" href="http://localhost:7777/url/<%= locals.id%>"> http://localhost:7777/url/<%= locals.id%></a>
+			<a target="_blank" href="http://localhost:7777/url/<%= locals.id%>"> http://localhost:7777/url/<%=
+					locals.id%></a>
 		</p>
 		<% } %>
 			<form method="POST" action="/url">
 				<label for="redirectURL">
 					Enter your URL here:
-					<input type="text" name="redirectURL" placeholder="https://www.example.com">
+					<input type="text" name="redirectURL" placeholder="https://example.com" />
 					<button type="submit">Generate</button>
 				</label>
 			</form>
